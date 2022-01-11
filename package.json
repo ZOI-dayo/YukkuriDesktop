@@ -1,0 +1,23 @@
+{
+  "name": "yukkuri_desktop",
+  "version": "1.0.0",
+  "description": "Youtubeなどへの動画投稿でよく使われるAquestalk(いわゆるゆっくりボイス)の生成を行うためのプログラムです。 動画編集ソフトへの音声ファイルのドラッグ&ドロップなどを実装する予定です。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZOI-dayo/YukkuriDesktop.git"
+  },
+  "author": "ZOI-dayo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZOI-dayo/YukkuriDesktop/issues"
+  },
+  "homepage": "https://github.com/ZOI-dayo/YukkuriDesktop#readme",
+  "devDependencies": {
+    "electron": "^16.0.6"
+  }
+}
