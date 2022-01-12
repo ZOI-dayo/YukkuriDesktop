@@ -1,3 +1,9 @@
+const { contextBridge } = require('electron')
+
+contextBridge.exposeInMainWorld('modules', {
+    request: require("request")
+})
+
 window.addEventListener('DOMContentLoaded', () => {
     const replaceText = (selector, text) => {
         const element = document.getElementById(selector)
