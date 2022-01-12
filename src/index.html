@@ -5,14 +5,47 @@
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
   <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <link rel="stylesheet" href="./style/fonts.css"/>
   <link rel="stylesheet" href="./style/layout.css"/>
   <title>Yukkuri Desktop</title>
 </head>
 <body>
-<div class="main">
-  <div class="texts">
-    <textarea id="text"></textarea>
-    <textarea id="accent"></textarea>
+<div id="main">
+  <div id="presets">
+    <div class="preset preset_selecting">
+      <div class="name">名前</div>
+      <div class="detail">f1, s:125, i: false</div>
+    </div>
+  </div>
+  <div id="controls">
+    <div id="name_edit">
+      設定名: <input type="text">
+    </div>
+    <div id="texts">
+      <textarea id="text"></textarea>
+      <textarea id="accent"></textarea>
+    </div>
+    <div id="player">
+      <button type="button" id="play"><span class="material-icons">play_arrow</span></button>
+      <button type="button" id="record"><span class="material-icons">fiber_manual_record</span></button>
+      <div id="file_drag_point">出力ファイル</div>
+    </div>
+    <div id="configurator">
+      声質: <select name="voice" id="voice-select">
+        <option value="aqtk1_f1">女声1</option>
+        <option value="aqtk1_f2">女声2</option>
+        <option value="aqtk1_m1">男声1</option>
+        <option value="aqtk1_m2">男声2</option>
+        <option value="aqtk1_r1">ロボット1</option>
+        <option value="aqtk1_imd1">IMD1</option>
+        <option value="aqtk1_dvd">DVD</option>
+        <option value="aqtk1_jgr">JGR</option>
+      </select><br>
+      速度: <input type="range" min="50" max="200" value="125" id="speed">
+    </div>
+  </div>
+  <div id="setting">
+    <button type="button" id="setting_button"><span class="material-icons">settings</span></button>
   </div>
 </div>
 <script type="module" src="./js/logic.js"></script>
