@@ -58,12 +58,12 @@ html, body {
   place-items: center;
 }
 
-#presets_area > .preset > .name {
+#presets_area > .preset > .preset_name {
   font-size: 14px;
   font-weight: bold;
 }
 
-#presets_area > .preset > .detail {
+#presets_area > .preset > .preset_detail {
   font-size: 12px;
   color: #888;
 }

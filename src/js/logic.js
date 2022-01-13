@@ -2,13 +2,14 @@ import {aquesTalk, kanji2Koe} from "./yukumo.js";
 
 let currentPreset = "";
 
-window.onload = () => {
-    main();
+window.onload = async () => {
+    await main();
 }
 
 async function main() {
     document.getElementById("record").onclick = () => download();
     document.getElementById("preset_add").onclick = () => addPreset();
+    reloadPresets()
 }
 
 async function getVoiceData() {
@@ -70,12 +71,35 @@ function reloadPresets() {
     const current_presets = window.config.get("presets");
     for (const name in current_presets) {
         const voice_data = current_presets[name];
-        console.log(voice_data);
+        // console.log(voice_data);
         presets.innerHTML += `
-<div class="preset preset_selecting">
-  <div class="name">${name}</div>
-  <div class="detail">${voice_data["type"]}, s:${voice_data["speed"]}, b:${voice_data["boyomi"]}</div>
+<div class="preset" id="preset_id_${name}">
+  <div class="preset_name">${name}</div>
+  <div class="preset_detail">${voice_data["type"]}, s:${voice_data["speed"]}, b:${voice_data["boyomi"]}</div>
 </div>
-`
+`;
+    }
+
+    for (let element of document.getElementById("presets_area").children) {
+        const name = element.id.slice(10);
+        element.onclick = () => changePreset(name);
+    }
+}
+
+function changePreset(name) {
+    for (let element of document.getElementsByClassName("preset_selecting")) {
+        element.classList.remove("preset_selecting");
+    }
+    document.getElementById(`preset_id_${name}`).classList.add("preset_selecting");
+
+    const presets = window.config.get("presets");
+    const voice_data = presets[name];
+    {
+        document.getElementById("name_edit_input").value = name;
+        const voice_select_element = document.getElementById("voice_select");
+        voice_select_element.value = voice_data["version"] + "_" + voice_data["type"];
+        // voice_data["boyomi"] = true;
+        const speed_element = document.getElementById("speed");
+        speed_element.value = voice_data["speed"];
     }
 }
