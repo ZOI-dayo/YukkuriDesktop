@@ -1,12 +1,21 @@
-const { contextBridge } = require('electron')
+const { contextBridge } = require('electron');
+const ElectronStore = require('electron-store');
+const store = new ElectronStore();
 
 contextBridge.exposeInMainWorld('modules', {
     request: require("request"),
     fs: require("fs"),
     path: require("path"),
-    Buffer: Buffer,
+});
+
+contextBridge.exposeInMainWorld('envs', {
     USER_PATH: process.env[process.platform === "win32" ? "USERPROFILE" : "HOME"],
-})
+});
+
+contextBridge.exposeInMainWorld('config', {
+    set: (key, value) => {return store.set(key, value);},
+    get: (key) => {return store.get(key) ?? {};},
+});
 
 window.addEventListener('DOMContentLoaded', () => {
     const replaceText = (selector, text) => {
